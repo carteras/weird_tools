@@ -68,22 +68,25 @@ def get_spare_lines(lines):
             out.append(line)
     return out
 
+def filter_all_lines(students_df):
 
-if __name__ == "__main__":
-    students_df = pd.read_csv(data / "absence_details_of_students.csv")
     for i in range(1, 8):
         filter_lines(data / f"line.{i}", students_df)
+
+def update_rooms_file(room, fd):
+    lines = sorted(rooms[room].get_lines())
+    spare_lines = get_spare_lines(lines)
+    print(room.strip(), rooms[room].max_size, ",".join(spare_lines))
+    fd.write(f"{room.strip()} {rooms[room].max_size} {','.join(spare_lines)}\n")
+
+def main():
+    students_df = pd.read_csv(data / "absence_details_of_students.csv")
+    filter_all_lines(students_df)
     with open(here/'rooms', 'w') as fd:
         for room in rooms:
             if room.strip() in ["CCCARE","HeLP", "DANCE", "DRAMA", "GYM", "MUSIC"]: continue
             if len(rooms[room].get_lines()) < 7 and rooms[room].max_size > 15:
-                lines = sorted(rooms[room].get_lines())
-                spare_lines = get_spare_lines(lines)
-                print(room.strip(), rooms[room].max_size, ",".join(spare_lines))
-                fd.write(f"{room.strip()} {rooms[room].max_size} {','.join(spare_lines)}\n")
-    
+                update_rooms_file(room, fd)
 
-# 'Unit Code',  'Unit Name' 'Student ID'
-#0 Big Picture Connected Learning (132XCAQQ2)
-# 1 Room: A329
-# 2 Alison CARSON
+if __name__ == "__main__":
+    main()
