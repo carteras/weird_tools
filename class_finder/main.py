@@ -84,7 +84,7 @@ def main():
     filter_all_lines(students_df)
     with open(here/'rooms', 'w') as fd:
         for room in rooms:
-            if room.strip() in ["CCCARE","HeLP", "DANCE", "DRAMA", "GYM", "MUSIC"]: continue
+            if room.strip() in ["C110", "C111", "C112","CCCARE","HeLP", "DANCE", "DRAMA", "GYM", "MUSIC"]: continue
             if len(rooms[room].get_lines()) < 7 and rooms[room].max_size > 15:
                 update_rooms_file(room, fd)
 
