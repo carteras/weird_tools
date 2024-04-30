@@ -8,6 +8,7 @@ data = Path.cwd() / ".data"
 
 
 if __name__ == "__main__":
+    
     students_df = pd.read_csv( data / "absence_details_of_students.csv")
     my_df = students_df[students_df['Teacher Name'] == "Mr Adam Carter"]
     student_ids = my_df['Student Key'].unique()
@@ -16,7 +17,8 @@ if __name__ == "__main__":
         for student_id in student_ids:
             # roll_group = my_df[my_df['Student Key'] == student_id]['Roll Group'].unique()[0]
             t_student = f"t{student_id:0>7}"
-            foo = f"- name: {t_student}\n  groups: ['dialout']\n  password: '\"{t_student}-password\"'\n"
+            foo = f"- name: {t_student}\n  groups: ['dialout']\n  password: \"{t_student}-password\"\n"
+            print(foo)
             fd.write(foo)
     with open(data / 'students.passwords', 'w') as fd:
         for student_id in student_ids:
