@@ -68,23 +68,36 @@ total_teachers = len(teachers_data)
 # teachers_data.sort(key=lambda t: len(t.lines), reverse=True)
 teachers_data.sort(key=lambda t: (len(t.lines), t.get_student_ratio()), reverse=True)
 # teachers_data.sort(key=lambda t: t.get_student_ratio(), reverse=True)
+names = []
 ratios = []
+lines = []
+total_students = []
 
 for t in teachers_data:
     ratios.append(t.get_student_ratio())
-    if t.number_of_lines() == 5: five_line_teachers += 1
-    if len(t.lines) > 0: 
-        if t.get_student_ratio() < 14 and t.name not in excluded_teachers:
-            print(f"\033[91m{t.name}, {len(t.lines)}, {t.total_size}, {t.get_student_ratio():.2f}\033[0m")  # Red text
+    names.append(t.name)
+    names.append(t.lines)
+    names.append(t.total_size)
+    # if t.number_of_lines() == 5: five_line_teachers += 1
+    # if len(t.lines) > 0: 
+    #     if t.get_student_ratio() < 14:
+    #         print(f"\033[91m{t.name}, {len(t.lines)}, {t.total_size}, {t.get_student_ratio():.2f}\033[0m")  # Red text
         # else:
             # print(f"{t.name}, {len(t.lines)}, {t.total_size}, {t.get_student_ratio():.2f}")
 
-print("five line teachers", five_line_teachers, total_teachers)
-print(statistics.mean(ratios))
-print(statistics.median(ratios))
-print(statistics.stdev(ratios))
+# print("five line teachers", five_line_teachers, total_teachers)
+# print(statistics.mean(ratios))
+# print(statistics.median(ratios))
+# print(statistics.stdev(ratios))
 
 # z = (X - mean) / std
 
-print((12.67-statistics.mean(ratios))/statistics.stdev(ratios))
+# print((12.67-statistics.mean(ratios))/statistics.stdev(ratios))
+
+df = pd.DataFrame(
+    'name' : names,
+    'total_students': total_students,
+    'lines': lines,
+    
+)
     
