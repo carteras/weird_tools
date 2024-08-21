@@ -22,7 +22,7 @@ if __name__ == "__main__":
     year_12s = networking[networking['Year'] == "12"][['Student Name', 'Student ID', "Unit Code", "Unit Name"]].drop_duplicates().sort_values(by='Unit Code')
 
 
-    print("")
+    print("NETWORKING")
 
 
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
             unit_types.append(unit_type)
 
         if student_acs['IntendsT1'].unique().item() == "No" or 'T' not in unit_types:
-            print(f"11 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be in Accredited Cloud and Distributed Systems. \n\n\n")
+            print(f"11 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be Accredited.")
             # print(i+1, 11, name, student_id, unit_name, unit_code, " | ",student_acs['IntendsT1'].unique().item(), " ".join(unit_types))
 
     for i, (name, student_id, unit_name, unit_code) in enumerate(year_12s.values):
@@ -51,9 +51,11 @@ if __name__ == "__main__":
             unit_types.append(unit_type)
 
         if student_acs['IntendsT1'].unique().item() == "No" or 'T' not in unit_types:
-            print(f"12 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be in Accredited Cloud and Distributed Systems.  \n\n\n")
+            print(f"12 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be Accredited.")
 
     # print(len(year_11s), len(year_12s))
+
+    print("ENGINEERING")
 
     year_11s = engineering[engineering['Year'] == "11"][['Student Name', 'Student ID', "Unit Code", "Unit Name"]].drop_duplicates().sort_values(by='Unit Code')
     year_12s = engineering[engineering['Year'] == "12"][['Student Name', 'Student ID', "Unit Code", "Unit Name"]].drop_duplicates().sort_values(by='Unit Code')
@@ -71,7 +73,7 @@ if __name__ == "__main__":
             unit_types.append(unit_type)
 
         if student_acs['IntendsT1'].unique().item() == "No" or 'T' not in unit_types:
-            print(f"11 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be in Accredited Future Challenges & Innovations. \n\n\n")
+            print(f"11 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be Accredited.")
             # print(i+1, 11, name, student_id, unit_name, unit_code, " | ",student_acs['IntendsT1'].unique().item(), " ".join(unit_types))
 
     for i, (name, student_id, unit_name, unit_code) in enumerate(year_12s.values):
@@ -85,4 +87,4 @@ if __name__ == "__main__":
             unit_types.append(unit_type)
 
         if student_acs['IntendsT1'].unique().item() == "No" or 'T' not in unit_types:
-            print(f"12 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be in Accredited Future Challenges & Innovations.  \n\n\n")
+            print(f"12 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be Accredited.")
