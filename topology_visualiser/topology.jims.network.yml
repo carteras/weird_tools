@@ -1,0 +1,95 @@
+name: jims.network
+topology:
+  nodes:
+    network.switch: 
+      # 192.168.8.0/24
+      kind: linux
+      image: frrouting/frr:latest
+      exec: 
+        - sh /config/config.switch.sh
+      binds:
+        - ./config:/config
+    server.dhcp:
+      # foo.intranet 
+      kind: linux
+      image: alpine:latest 
+      exec: 
+        - sh /config/config.dhcp.sh
+      binds:
+        - ./config:/config
+    server.http:
+      # shitty forum with sql injection attack that exposes usernames and passwords
+      kind: linux
+      image: alpine:latest  
+      exec: 
+        - sh /config/config.http.sh
+      binds:
+        - ./config:/config
+    server.ntp:
+      # I assume this exists for raspberry PIs? 
+      kind: linux
+      image: alpine:latest  
+      exec: 
+        - sh /config/config.ntp.sh
+      binds:
+        - ./config:/config
+    server.ftp:
+      # ftp username:password gained from http
+      kind: linux
+      image: alpine:latest  
+      exec: 
+        - sh /config/config.ftp.sh
+      binds:
+        - ./config:/config
+    server.herring-1:
+      # sends messages to EA workstation to allow wireshark/termshark to discover WAP network
+      kind: linux
+      image: alpine:latest  
+      exec: 
+        - sh /config/config.workstation.herring-1.sh
+      binds:
+        - ./config:/config
+    server.herring-2:
+      # sends messages to EA workstation to allow wireshark/termshark to discover WAP network
+      kind: linux
+      image: alpine:latest  
+      exec: 
+        - sh /config/config.workstation.herring-2.sh
+      binds:
+        - ./config:/config
+    network.wap:
+      # 192.168.9.0/24 network
+      kind: linux
+      image: frrouting/frr:latest 
+      exec: 
+        - sh /config/config.WAP.sh
+      binds:
+        - ./config:/config
+    wap.workstation.ea:
+      # username:password exposed on server.http
+      kind: linux
+      image: alpine:latest   
+      exec: 
+        - sh /config/config.workstation.ea.sh
+      binds:
+        - ./config:/config
+    wap.workstation.ea.backup:
+      # confidential business information on EA backup
+      kind: linux
+      image: alpine:latest   
+      exec: 
+        - sh /config/config.workstation.ea-backup.sh
+      binds:
+        - ./config:/config
+
+  links: 
+    - endpoints: ['network.switch:eth1', "server.dhcp:eth1"]
+    - endpoints: ['network.switch:eth2', "server.http:eth1"]
+    - endpoints: ['network.switch:eth3', "server.ntp:eth1"]
+    - endpoints: ['network.switch:eth4', "server.ftp:eth1"]
+    - endpoints: ['network.switch:eth5', "server.herring-1:eth1"]
+    - endpoints: ['network.switch:eth6', "server.herring-2:eth1"]
+    - endpoints: ['network.switch:eth7', "network.wap:eth1"]
+    - endpoints: ['network.wap:eth2', "wap.workstation.ea:eth1"]
+    - endpoints: ['network.wap:eth3', "wap.workstation.ea.backup:eth1"]
+  

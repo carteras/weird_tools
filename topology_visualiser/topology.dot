@@ -1,0 +1,21 @@
+graph G {
+  "network.switch" [label="network.switch (linux)"];
+  "server.dhcp" [label="server.dhcp (linux)"];
+  "server.http" [label="server.http (linux)"];
+  "server.ntp" [label="server.ntp (linux)"];
+  "server.ftp" [label="server.ftp (linux)"];
+  "server.herring-1" [label="server.herring-1 (linux)"];
+  "server.herring-2" [label="server.herring-2 (linux)"];
+  "network.wap" [label="network.wap (linux)"];
+  "wap.workstation.ea" [label="wap.workstation.ea (linux)"];
+  "wap.workstation.ea.backup" [label="wap.workstation.ea.backup (linux)"];
+  "network.switch" -- "server.dhcp" [label="eth1-eth1"];
+  "network.switch" -- "server.http" [label="eth2-eth1"];
+  "network.switch" -- "server.ntp" [label="eth3-eth1"];
+  "network.switch" -- "server.ftp" [label="eth4-eth1"];
+  "network.switch" -- "server.herring-1" [label="eth5-eth1"];
+  "network.switch" -- "server.herring-2" [label="eth6-eth1"];
+  "network.switch" -- "network.wap" [label="eth7-eth1"];
+  "network.wap" -- "wap.workstation.ea" [label="eth2-eth1"];
+  "network.wap" -- "wap.workstation.ea.backup" [label="eth3-eth1"];
+}
