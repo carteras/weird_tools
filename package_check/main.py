@@ -9,8 +9,8 @@ data = Path.cwd() / ".data"
 
 if __name__ == "__main__": 
     acs_courses = ["NETWORKING AND SECURITY ", "ENGINEERING STUDIES " ]
-    students_df = pd.read_csv( data / "summary_of_student_absences 2024S2T3.csv", converters={'Student ID': '{:0>7}'.format})
-    acs_df = pd.read_csv(data / "acs-Student Reports-Academic Record2024S2T3.csv", converters={'StudentId1': '{:0>7}'.format})
+    students_df = pd.read_csv( data / "2024.S2.T4.summary_of_student_absences.csv", converters={'Student ID': '{:0>7}'.format})
+    acs_df = pd.read_csv(data / "2024.S2.T4.acs-Student Reports-Academic Record.csv", converters={'StudentId1': '{:0>7}'.format})
     my_df = students_df[students_df['Teacher'] == "Mr Adam Carter"]
     
     # print(my_df.head())
@@ -49,9 +49,11 @@ if __name__ == "__main__":
         for unit_type in filtered_students['UnitAccredType1']:
             # print(unit_type)
             unit_types.append(unit_type)
-
-        if student_acs['IntendsT1'].unique().item() == "No" or 'T' not in unit_types:
-            print(f"12 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be Accredited.")
+        try:
+            if student_acs['IntendsT1'].unique().item() == "No" or 'T' not in unit_types:
+                print(f"12 {name:<30} {student_id}\n\t {unit_name} {unit_code} should be Accredited.")
+        except:
+            print(student_id)
 
     # print(len(year_11s), len(year_12s))
 
