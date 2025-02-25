@@ -1,0 +1,612 @@
+1
+00:00:00,000 --> 00:00:06,000
+ But this is just a quick video demonstrating how while loops work.
+
+2
+00:00:06,000 --> 00:00:13,000
+ The main gist of this lesson is to have a look at the basic syntax of while loops.
+
+3
+00:00:13,000 --> 00:00:19,000
+ Using a while loop to control LED, using serial input or sensor monitoring.
+
+4
+00:00:19,000 --> 00:00:24,000
+ I think the demonstration is just going to be sensor monitoring, which will be a button.
+
+5
+00:00:24,000 --> 00:00:32,000
+ And the rest of this lesson handles things like infinite loops, breaking out of loops, and how to deal with other serial connections, etc.
+
+6
+00:00:32,000 --> 00:00:39,000
+ The real too-long-didn't-read of how to use while loops is this basic syntax.
+
+7
+00:00:39,000 --> 00:00:43,000
+ While some condition, do stuff.
+
+8
+00:00:43,000 --> 00:00:47,000
+ And it will just go through those steps.
+
+9
+00:00:47,000 --> 00:00:52,000
+ We can see here that if we have int i, it's assigned to i.
+
+10
+00:00:52,000 --> 00:00:54,000
+ While i is less than or equal to i.
+
+11
+00:00:54,000 --> 00:00:58,000
+ Serial dot println i.
+
+12
+00:00:58,000 --> 00:01:02,000
+ It will print 1, 2, 3, so on until 5.
+
+13
+00:01:02,000 --> 00:01:06,000
+ And every time it will go through, it will increment this.
+
+14
+00:01:06,000 --> 00:01:08,000
+ So, that's the condition, go down.
+
+15
+00:01:08,000 --> 00:01:10,000
+ Let's build that.
+
+16
+00:01:10,000 --> 00:01:15,000
+ I'm going to use this circuit diagram right here.
+
+17
+00:01:15,000 --> 00:01:17,000
+ For two reasons.
+
+18
+00:01:17,000 --> 00:01:19,000
+ One, it's pretty simple.
+
+19
+00:01:19,000 --> 00:01:22,000
+ And two, it kind of builds into the challenge
+
+20
+00:01:22,000 --> 00:01:24,000
+ of our little
+
+21
+00:01:24,000 --> 00:01:26,000
+ lesson.
+
+22
+00:01:26,000 --> 00:01:28,000
+ So, all it is, is a button.
+
+23
+00:01:28,000 --> 00:01:30,000
+ Really naively plugged in.
+
+24
+00:01:30,000 --> 00:01:32,000
+ I have a one
+
+25
+00:01:32,000 --> 00:01:35,000
+ giga ohm resistor.
+
+26
+00:01:35,000 --> 00:01:38,000
+ Doesn't matter what it is, as long as it's high.
+
+27
+00:01:38,000 --> 00:01:41,000
+ And I'm fitting that into pin 2.
+
+28
+00:01:41,000 --> 00:01:44,000
+ And I have a LED
+
+29
+00:01:44,000 --> 00:01:46,000
+ plugged into pin 13
+
+30
+00:01:46,000 --> 00:01:48,000
+ with a 220 ohm resistor.
+
+31
+00:01:48,000 --> 00:01:51,000
+ And you can see that both my ground and my power
+
+32
+00:01:51,000 --> 00:01:53,000
+ are plumbed in.
+
+33
+00:01:54,000 --> 00:01:58,000
+ So, starting with a serial begin,
+
+34
+00:01:58,000 --> 00:02:01,000
+ I'm going to program my first while loop.
+
+35
+00:02:01,000 --> 00:02:04,000
+ So, I'm going to say int i is assigned to 0.
+
+36
+00:02:04,000 --> 00:02:07,000
+ Because number lines start from 0.
+
+37
+00:02:07,000 --> 00:02:13,000
+ And I'm going to say while i is less than or equal to 5.
+
+38
+00:02:13,000 --> 00:02:19,000
+ I am going to serial dot println i.
+
+39
+00:02:19,000 --> 00:02:23,000
+ And then I need to increment my
+
+40
+00:02:23,000 --> 00:02:25,000
+ i's up.
+
+41
+00:02:25,000 --> 00:02:26,000
+ Now, when this runs,
+
+42
+00:02:26,000 --> 00:02:29,000
+ fingers crossed it runs first go,
+
+43
+00:02:29,000 --> 00:02:32,000
+ we should see the output there.
+
+44
+00:02:32,000 --> 00:02:33,000
+ And we can.
+
+45
+00:02:33,000 --> 00:02:37,000
+ 0, 1, 2, 3, 4, 5.
+
+46
+00:02:37,000 --> 00:02:40,000
+ Now, let's just step through that code
+
+47
+00:02:40,000 --> 00:02:44,000
+ to watch it actually work.
+
+48
+00:02:44,000 --> 00:02:47,000
+ So, our code stops here.
+
+49
+00:02:47,000 --> 00:02:49,000
+ The code block has started.
+
+50
+00:02:49,000 --> 00:02:50,000
+ I step forward.
+
+51
+00:02:50,000 --> 00:02:52,000
+ I initialize
+
+52
+00:02:52,000 --> 00:02:54,000
+ the serial connection.
+
+53
+00:02:54,000 --> 00:02:57,000
+ I create a variable called i.
+
+54
+00:02:57,000 --> 00:02:59,000
+ And I assign it to 0.
+
+55
+00:02:59,000 --> 00:03:02,000
+ And now I'm going to say while i,
+
+56
+00:03:02,000 --> 00:03:04,000
+ which is currently 0,
+
+57
+00:03:04,000 --> 00:03:07,000
+ is less than or equal to 5.
+
+58
+00:03:07,000 --> 00:03:09,000
+ I'm going to do some stuff.
+
+59
+00:03:09,000 --> 00:03:11,000
+ Serial dot println i.
+
+60
+00:03:11,000 --> 00:03:14,000
+ This should print 0.
+
+61
+00:03:14,000 --> 00:03:19,000
+ And it will appear in assign time.
+
+62
+00:03:19,000 --> 00:03:21,000
+ It's a buffer issue now.
+
+63
+00:03:21,000 --> 00:03:22,000
+ But serial is now 1
+
+64
+00:03:22,000 --> 00:03:27,000
+ because this increments it by 1.
+
+65
+00:03:27,000 --> 00:03:28,000
+ And actually it might
+
+66
+00:03:28,000 --> 00:03:31,000
+ because it's in the web client.
+
+67
+00:03:31,000 --> 00:03:35,000
+ It will go through.
+
+68
+00:03:35,000 --> 00:03:41,000
+ Character by character.
+
+69
+00:03:41,000 --> 00:03:46,000
+ And we can see it's repeated again.
+
+70
+00:03:46,000 --> 00:03:49,000
+ Now, let's,
+
+71
+00:03:49,000 --> 00:03:53,000
+ let's play around with that
+
+72
+00:03:53,000 --> 00:03:55,000
+ circuit that we had before.
+
+73
+00:03:55,000 --> 00:03:57,000
+ This one here.
+
+74
+00:03:57,000 --> 00:04:01,000
+ With that button and that LED.
+
+75
+00:04:01,000 --> 00:04:03,000
+ So, that button,
+
+76
+00:04:03,000 --> 00:04:05,000
+ if I remember correctly,
+
+77
+00:04:05,000 --> 00:04:06,000
+ was on pin 2.
+
+78
+00:04:06,000 --> 00:04:14,000
+ So, let's add that.
+
+79
+00:04:14,000 --> 00:04:17,000
+ Button pin is pin 2.
+
+80
+00:04:17,000 --> 00:04:22,000
+ And I'm going to make one for my LED.
+
+81
+00:04:22,000 --> 00:04:26,000
+ Which is on pin 13.
+
+82
+00:04:26,000 --> 00:04:30,000
+ I need to set my modes.
+
+83
+00:04:30,000 --> 00:04:34,000
+ Now, my pin mode for my LED pin is,
+
+84
+00:04:34,000 --> 00:04:36,000
+ is that an input or an output?
+
+85
+00:04:36,000 --> 00:04:37,000
+ Are we going to read from
+
+86
+00:04:37,000 --> 00:04:39,000
+ or are we going to write to?
+
+87
+00:04:39,000 --> 00:04:40,000
+ Well, we're going to read from it.
+
+88
+00:04:40,000 --> 00:04:42,000
+ So, it is a output.
+
+89
+00:04:42,000 --> 00:04:45,000
+ It's sending stuff to us.
+
+90
+00:04:47,000 --> 00:04:52,000
+ And,
+
+91
+00:04:52,000 --> 00:04:56,000
+ my pin mode for my button
+
+92
+00:04:56,000 --> 00:04:57,000
+ in,
+
+93
+00:04:57,000 --> 00:04:59,000
+ um,
+
+94
+00:04:59,000 --> 00:05:01,000
+ is an input.
+
+95
+00:05:05,000 --> 00:05:06,000
+ And now,
+
+96
+00:05:06,000 --> 00:05:08,000
+ I'm going to make another while loop.
+
+97
+00:05:08,000 --> 00:05:10,000
+ The whole idea of this is that
+
+98
+00:05:10,000 --> 00:05:13,000
+ the button only flashes
+
+99
+00:05:13,000 --> 00:05:15,000
+ if I'm pushing that button.
+
+100
+00:05:15,000 --> 00:05:16,000
+ Sorry, the LED only flashes.
+
+101
+00:05:16,000 --> 00:05:17,000
+ I'm going to push the button.
+
+102
+00:05:17,000 --> 00:05:19,000
+ So, I'm going to do the other logic first.
+
+103
+00:05:19,000 --> 00:05:20,000
+ Right?
+
+104
+00:05:20,000 --> 00:05:23,000
+ I'm going to go digital write,
+
+105
+00:05:23,000 --> 00:05:24,000
+ LED pin,
+
+106
+00:05:24,000 --> 00:05:26,000
+ high,
+
+107
+00:05:26,000 --> 00:05:28,000
+ delay,
+
+108
+00:05:28,000 --> 00:05:30,000
+ 500.
+
+109
+00:05:30,000 --> 00:05:32,000
+ Digital write,
+
+110
+00:05:32,000 --> 00:05:33,000
+ LED pin,
+
+111
+00:05:33,000 --> 00:05:35,000
+ low,
+
+112
+00:05:35,000 --> 00:05:37,000
+ delay,
+
+113
+00:05:37,000 --> 00:05:40,000
+ 500.
+
+114
+00:05:40,000 --> 00:05:43,000
+ Now, what's this condition here?
+
+115
+00:05:43,000 --> 00:05:44,000
+ I mean, that's a good question.
+
+116
+00:05:44,000 --> 00:05:45,000
+ Um, I think,
+
+117
+00:05:46,000 --> 00:05:48,000
+ we should think about it.
+
+118
+00:05:48,000 --> 00:05:50,000
+ Um, we want the button to,
+
+119
+00:05:50,000 --> 00:05:52,000
+ to be depressed.
+
+120
+00:05:52,000 --> 00:05:54,000
+ But, I'm going to write it in here
+
+121
+00:05:54,000 --> 00:05:56,000
+ and then I'll make it neater afterwards.
+
+122
+00:05:56,000 --> 00:05:58,000
+ So, I'm going to go
+
+123
+00:05:58,000 --> 00:06:00,000
+ digital read.
+
+124
+00:06:00,000 --> 00:06:02,000
+ Uh, the button pin
+
+125
+00:06:04,000 --> 00:06:06,000
+ is equal to high.
+
+126
+00:06:09,000 --> 00:06:12,000
+ And, let's see if this works.
+
+127
+00:06:16,000 --> 00:06:21,000
+ It does not.
+
+128
+00:06:21,000 --> 00:06:22,000
+ Stop simulation.
+
+129
+00:06:22,000 --> 00:06:24,000
+ Let's have a look at our code.
+
+130
+00:06:34,000 --> 00:06:36,000
+ Oh, that's probably because I had the debugger still on.
+
+131
+00:06:36,000 --> 00:06:38,000
+ Uh, stop,
+
+132
+00:06:38,000 --> 00:06:39,000
+ start simulation.
+
+133
+00:06:39,000 --> 00:06:41,000
+ Let's get rid of this code.
+
+134
+00:06:42,000 --> 00:06:44,000
+ Oh.
+
+135
+00:06:44,000 --> 00:06:46,000
+ So, we can see the LED flashes
+
+136
+00:06:46,000 --> 00:06:48,000
+ while I've got the button held.
+
+137
+00:06:48,000 --> 00:06:50,000
+ And, it stops when I've turned it off.
+
+138
+00:06:50,000 --> 00:06:51,000
+ However,
+
+139
+00:06:51,000 --> 00:06:52,000
+ just be aware,
+
+140
+00:06:52,000 --> 00:06:53,000
+ because we have delays,
+
+141
+00:06:53,000 --> 00:06:54,000
+ it will block in that,
+
+142
+00:06:54,000 --> 00:06:55,000
+ that passage.
+
+143
+00:06:55,000 --> 00:06:57,000
+ I'll show you what I mean.
+
+144
+00:06:57,000 --> 00:06:58,000
+ If I press
+
+145
+00:06:58,000 --> 00:06:59,000
+ the button once,
+
+146
+00:06:59,000 --> 00:07:01,000
+ you see how it said on
+
+147
+00:07:01,000 --> 00:07:02,000
+ and then turned off.
+
+148
+00:07:03,000 --> 00:07:04,000
+ If we had, say,
+
+149
+00:07:04,000 --> 00:07:05,000
+ a whole list of LEDs here,
+
+150
+00:07:05,000 --> 00:07:07,000
+ they were all
+
+151
+00:07:07,000 --> 00:07:09,000
+ pulsing on a delay,
+
+152
+00:07:09,000 --> 00:07:13,000
+ then turning it on would make it go until that code block
+
+153
+00:07:13,000 --> 00:07:15,000
+ is complete.
+
